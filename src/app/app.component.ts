@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import data from './app.data'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  messages = data;
+
+
+
+  togglestar(id) {
+    for (var i = 0; i < this.messages.length; i++) {
+      if (id === this.messages[i].id)  {
+          this.messages[i].starred = !this.messages[i].starred
+      }
+    }
+  }
+
+  togglecheckbox(id) {
+    for (var i = 0; i < this.messages.length; i++) {
+      if (id === this.messages[i].id) {
+        this.messages[i].selected = !this.messages[i].selected
+      }
+    }
+  }
 }
