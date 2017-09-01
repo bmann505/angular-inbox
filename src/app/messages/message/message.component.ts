@@ -10,7 +10,7 @@ export class MessageComponent implements OnInit {
   @Input() message: Message[];
   @Input() togglestar: (id: number) => void;
   @Input() togglecheckbox: (id: number) => void;
-
+  
   constructor() { }
 
   ngOnInit() {

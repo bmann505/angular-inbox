@@ -5,7 +5,8 @@ const data = [
     "read": false,
     "starred": true,
     "selected": false,
-    "labels": ["dev", "personal"]
+    "labels": ["dev", "personal"],
+    "hidden": false
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@ const data = [
     "read": false,
     "starred": false,
     "selected": true,
-    "labels": []
+    "labels": [],
+    "hidden": false
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@ const data = [
     "read": false,
     "starred": true,
     "selected": false,
-    "labels": ["dev"]
+    "labels": ["dev"],
+    "hidden": false
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@ const data = [
     "read": true,
     "starred": false,
     "selected": true,
-    "labels": []
+    "labels": [],
+    "hidden": false
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@ const data = [
     "read": false,
     "starred": false,
     "selected": false,
-    "labels": ["personal"]
+    "labels": ["personal"],
+    "hidden": false
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@ const data = [
     "read": true,
     "starred": true,
     "selected": false,
-    "labels": []
+    "labels": [],
+    "hidden": false
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@ const data = [
     "read": true,
     "starred": false,
     "selected": false,
-    "labels": ["dev", "personal"]
+    "labels": ["dev", "personal"],
+    "hidden": false
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@ const data = [
     "read": true,
     "starred": true,
     "selected": false,
-    "labels": []
+    "labels": [],
+    "hidden": false
   }
 ]
 export default data

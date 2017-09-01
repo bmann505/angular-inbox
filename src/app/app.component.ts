@@ -28,9 +28,9 @@ export class AppComponent {
   select() {
     let messagesLength = this.messages.length;
     let selectedLength = this.messages.filter(messages =>
-      messages.selected === true).length
+      messages.selected).length
     this.messages.forEach(message => {
-      if (message.selected === false) {
+      if (!message.selected) {
         message.selected = true;
       } else if (messagesLength === selectedLength) {
         message.selected = false;
@@ -40,7 +40,7 @@ export class AppComponent {
 
   displayRead() {
     this.messages.forEach(message => {
-      if(message.read === false && message.selected === true) {
+      if(!message.read && message.selected) {
         message.read = true;
       }
     })
@@ -48,9 +48,22 @@ export class AppComponent {
 
   displayUnread() {
     this.messages.forEach(message => {
-      if(message.read === true && message.selected === true) {
+      if(message.read && message.selected) {
         message.read = false;
       }
+    })
+  }
+
+  deleteMessage() {
+    let messagesSelected = [];
+    this.messages.forEach(message => {
+      if(message.selected) {
+        messagesSelected.push(message)
+      }
+    })
+    messagesSelected.forEach((message) => {
+      message.hidden = true
+      message.read = true
     })
   }
 }

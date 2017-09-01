@@ -10,6 +10,7 @@ export class ToolbarComponent implements OnInit {
   @Input() selectall: () => void;
   @Input() displayRead: () => void;
   @Input() displayUnread: () => void;
+  @Input() deleteMessage: () => void;
   constructor() { }
 
   ngOnInit() {
