@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MessageComponent } from './messages/message/message.component';
 import { MessagesComponent } from './messages/messages.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
     AppComponent,
     MessageComponent,
     MessagesComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule
