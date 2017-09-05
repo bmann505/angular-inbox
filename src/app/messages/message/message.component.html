@@ -1,5 +1,5 @@
 <div class="row message"
-[ngClass] = "{read: message.read === true, unread: message.read === false, selected: message.selected === true, hidden: message.hidden === true}">
+[ngClass] = "{read: message.read, unread: !message.read, selected: message.selected, hidden: message.hidden}">
   <div class="col-xs-1">
     <div class="row">
       <div (click)="togglecheckbox(message.id)" class="col-xs-2">

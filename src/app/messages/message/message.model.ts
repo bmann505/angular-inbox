@@ -5,5 +5,4 @@ export class Message {
   starred: boolean;
   selected: boolean;
   labels: string[];
-  hidden: boolean = false;
 }

@@ -66,4 +66,39 @@ export class AppComponent {
       message.read = true
     })
   }
+
+  addLabel(label) {
+    let messagesSelected = []
+    this.messages.forEach(message => {
+      if(message.selected) {
+        messagesSelected.push(message)
+      }
+    })
+    messagesSelected.forEach((message, index) => {
+      if(message.labels.indexOf(label) === -1) {
+        message.labels.push(label);
+      }
+    })
+  }
+
+  removeLabel(label) {
+    console.log("label", label)
+    let messagesSelected = [];
+    this.messages.forEach(message => {
+      if (message.selected) {
+      messagesSelected.push(message)
+      }
+    })
+    console.log("message array", messagesSelected)
+      console.log("label", label)
+    messagesSelected.forEach((message, index) => {
+      if(message.labels.indexOf(label) !== -1) {
+        console.log(message.labels)
+        message.labels.splice(index, 1);
+      }
+      console.log("after", message.labels)
+    })
+  }
+
+
 }

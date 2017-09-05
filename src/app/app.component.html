@@ -1,2 +1,13 @@
-<app-toolbar [selectall]="select.bind(this)" [displayRead]="displayRead.bind(this)" [displayUnread]="displayUnread.bind(this)" [deleteMessage]="deleteMessage.bind(this)"></app-toolbar>
-<app-messages [messages]="messages" [togglestar]="togglestar.bind(this)" [togglecheckbox]="togglecheckbox.bind(this)"></app-messages>
+<app-toolbar
+[removeLabel]="removeLabel.bind(this)"
+[addLabel]="addLabel.bind(this)"
+[selectall]="select.bind(this)"
+[displayRead]="displayRead.bind(this)"
+[displayUnread]="displayUnread.bind(this)"
+[deleteMessage]="deleteMessage.bind(this)">
+</app-toolbar>
+<app-messages
+[messages]="messages"
+[togglestar]="togglestar.bind(this)"
+[togglecheckbox]="togglecheckbox.bind(this)">
+</app-messages>

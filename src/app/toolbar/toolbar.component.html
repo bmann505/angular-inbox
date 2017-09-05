@@ -12,13 +12,13 @@
     </button>
     <button (click)="displayRead()" class="btn btn-default">Mark As Read</button>
     <button (click)="displayUnread()" class="btn btn-default">Mark As Unread</button>
-    <select class="form-control label-select">
-      <option>Apply label</option>
+    <select (change)="addLabel($event.target.value)"class="form-control label-select">
+      <option >Apply label</option>
       <option value="dev">dev</option>
       <option value="personal">personal</option>
       <option value="gschool">gschool</option>
     </select>
-    <select class="form-control label-select">
+    <select (change)="removeLabel($event.target.value)" class="form-control label-select">
       <option>Remove label</option>
       <option value="dev">dev</option>
       <option value="personal">personal</option>
