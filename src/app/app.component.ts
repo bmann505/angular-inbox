@@ -1,13 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import data from './app.data'
-
+// const baseURL = 'http://localhost:8082/api'
+const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  messages = data;
+export class AppComponent implements OnInit {
+
+async ngOnInit() {
+  const data = await fetch(`${baseURL}/messages`)
+  const res = await data.json()
+  const messages = res._embedded.messages
+  this.messages = messages
+}
+
+messages = this.messages
 
   togglestar(id) {
     this.messages.forEach(message => {
