@@ -1,14 +1,14 @@
 <div class="row toolbar">
   <div class="col-md-12">
     <p class="pull-right">
-      <span class="badge badge">2</span>
+      <span class="badge badge">{{ unReadCounter() }}</span>
       unread messages
     </p>
     <a class="btn btn-danger">
       <i class="fa fa-plus"></i>
     </a>
     <button (click)="selectall()" class="btn btn-default">
-      <i class="fa fa-minus-square-o"></i>
+      <i class="{{ toggleSelectButton() }}"></i>
     </button>
     <button (click)="displayRead()" class="btn btn-default">Mark As Read</button>
     <button (click)="displayUnread()" class="btn btn-default">Mark As Unread</button>

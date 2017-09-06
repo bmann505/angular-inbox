@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import data from './app.data'
-// const baseURL = 'http://localhost:8082/api'
-const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
+const baseURL = 'http://localhost:8082/api'
+// const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +19,26 @@ async ngOnInit() {
 
 messages = this.messages
 
-  togglestar(id) {
+  async togglestar(id) {
+    let starred;
+    this.messages.forEach(message => {
+      if(message.id === id) {
+        starred = !message.starred;
+      }
+    })
+    const body = {
+        "messageIds": [id],
+        "command": "star",
+        "star": starred
+        }
+    const settings = {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
     this.messages.forEach(message => {
       if (id === message.id) {
         message.starred = !message.starred;
@@ -47,7 +67,26 @@ messages = this.messages
     })
   }
 
-  displayRead() {
+  async displayRead() {
+    let read = [];
+    this.messages.forEach(message => {
+      if(message.selected && !message.read) {
+        read.push(message.id)
+      }
+    })
+    const body = {
+        "messageIds": read,
+        "command": "read",
+        "read": true
+      }
+    const settings = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
     this.messages.forEach(message => {
       if(!message.read && message.selected) {
         message.read = true;
@@ -55,7 +94,26 @@ messages = this.messages
     })
   }
 
-  displayUnread() {
+  async displayUnread() {
+    let unRead = [];
+    this.messages.forEach(message => {
+      if(message.selected && message.read) {
+        unRead.push(message.id)
+      }
+    })
+    const body = {
+        "messageIds": unRead,
+        "command": "read",
+        "read": false
+      }
+    const settings = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
     this.messages.forEach(message => {
       if(message.read && message.selected) {
         message.read = false;
@@ -63,51 +121,110 @@ messages = this.messages
     })
   }
 
-  deleteMessage() {
+  async deleteMessage() {
     let messagesSelected = [];
     this.messages.forEach(message => {
       if(message.selected) {
-        messagesSelected.push(message)
+        messagesSelected.push(message.id)
       }
     })
-    messagesSelected.forEach((message) => {
-      message.hidden = true
-      message.read = true
-    })
+    const body = {
+      "messageIds": messagesSelected,
+      "command": "delete"
+    }
+    const settings = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
+    const refresh = await fetch(`${baseURL}/messages`)
+    const res = await refresh.json()
+    const messages = res._embedded.messages
+    this.messages = messages
   }
 
-  addLabel(label) {
+  async addLabel(label) {
     let messagesSelected = []
     this.messages.forEach(message => {
       if(message.selected) {
-        messagesSelected.push(message)
+        messagesSelected.push(message.id)
       }
     })
-    messagesSelected.forEach((message, index) => {
-      if(message.labels.indexOf(label) === -1) {
+    const body = {
+        "messageIds": messagesSelected,
+        "command": "addLabel",
+        "label": label
+      }
+    const settings = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
+    this.messages.forEach((message, index) => {
+      if(message.labels.indexOf(label) === -1 && message.selected) {
         message.labels.push(label);
       }
     })
   }
 
-  removeLabel(label) {
-    console.log("label", label)
+  async removeLabel(label) {
     let messagesSelected = [];
     this.messages.forEach(message => {
       if (message.selected) {
-      messagesSelected.push(message)
+      messagesSelected.push(message.id)
       }
     })
-    console.log("message array", messagesSelected)
-      console.log("label", label)
-    messagesSelected.forEach((message, index) => {
-      if(message.labels.indexOf(label) !== -1) {
-        console.log(message.labels)
-        message.labels.splice(index, 1);
+    const body = {
+      "messageIds": messagesSelected,
+      "command": "removeLabel",
+      "label": label
+    }
+    const settings = {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    }
+    const data = await fetch(`${baseURL}/messages`, settings)
+    this.messages.forEach((message, index) => {
+      let removeIndex = message.labels.indexOf(label)
+      if(message.labels.indexOf(label) !== -1 && message.selected) {
+        message.labels.splice(removeIndex, 1);
       }
-      console.log("after", message.labels)
     })
   }
 
+toggleSelectButton() {
+  let messagesSelected = [];
+  this.messages.forEach(message => {
+    if(message.selected) {
+      messagesSelected.push(message)
+    }
+  })
+  if (messagesSelected.length === 0) {
+    return "fa fa-square-o"
+  } else if (messagesSelected.length === this.messages.length) {
+    return "fa fa-check-square-o"
+  } else {
+    return "fa fa-minus-square-o"
+  }
+}
+
+unReadCounter() {
+  let readMessages = [];
+  this.messages.forEach(message => {
+    if (message.read) {
+      readMessages.push(message);
+    }
+  })
+  return readMessages.length
+}
 
 }
