@@ -227,4 +227,9 @@ unReadCounter() {
   return readMessages.length
 }
 
+newMessage(event) {
+  event.preventDefault;
+  console.log("submit working")
+}
+
 }

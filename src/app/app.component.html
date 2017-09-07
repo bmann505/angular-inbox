@@ -8,6 +8,9 @@
 [displayUnread]="displayUnread.bind(this)"
 [deleteMessage]="deleteMessage.bind(this)">
 </app-toolbar>
+<app-compose
+[newMessage] = "newMessage.bind(this)">
+</app-compose>
 <app-messages
 [messages]="messages"
 [togglestar]="togglestar.bind(this)"

@@ -5,6 +5,7 @@ import { MessageComponent } from './messages/message/message.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ComposeComponent } from './compose/compose.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     MessageComponent,
     MessagesComponent,
     ToolbarComponent,
+    ComposeComponent,
   ],
   imports: [
     BrowserModule,
