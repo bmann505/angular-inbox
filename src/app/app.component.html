@@ -9,7 +9,7 @@
 [deleteMessage]="deleteMessage.bind(this)">
 </app-toolbar>
 <app-compose
-[newMessage] = "newMessage.bind(this)">
+[onSubmit]="onSubmit.bind(this)">
 </app-compose>
 <app-messages
 [messages]="messages"

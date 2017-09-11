@@ -6,7 +6,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ComposeComponent } from './compose/compose.component';
-
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { ComposeComponent } from './compose/compose.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

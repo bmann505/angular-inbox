@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ComposeComponent implements OnInit {
 
-  @Input() newMessage: () => void;
+  @Input() onSubmit: () => void;
+
   constructor() { }
 
   ngOnInit() {

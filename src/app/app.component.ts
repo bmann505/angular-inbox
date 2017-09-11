@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import data from './app.data'
+import { NgForm } from '@angular/forms'
+
 const baseURL = 'http://localhost:8082/api'
 // const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
 
@@ -203,33 +205,56 @@ messages = this.messages
 
 toggleSelectButton() {
   let messagesSelected = [];
-  this.messages.forEach(message => {
-    if(message.selected) {
-      messagesSelected.push(message)
+    if (this.messages) {
+    this.messages.forEach(message => {
+      if(message.selected) {
+        messagesSelected.push(message)
+      }
+    })
+    if (messagesSelected.length === 0) {
+      return "fa fa-square-o"
+    } else if (messagesSelected.length === this.messages.length) {
+      return "fa fa-check-square-o"
+    } else {
+      return "fa fa-minus-square-o"
     }
-  })
-  if (messagesSelected.length === 0) {
-    return "fa fa-square-o"
-  } else if (messagesSelected.length === this.messages.length) {
-    return "fa fa-check-square-o"
-  } else {
-    return "fa fa-minus-square-o"
   }
 }
 
 unReadCounter() {
-  let readMessages = [];
-  this.messages.forEach(message => {
-    if (message.read) {
-      readMessages.push(message);
-    }
-  })
-  return readMessages.length
+  if (this.messages) {
+    let unReadMessages = [];
+    this.messages.forEach(message => {
+      if (!message.read) {
+        unReadMessages.push(message);
+      }
+    })
+    return unReadMessages.length
+  }
 }
 
-newMessage(event) {
-  event.preventDefault;
-  console.log("submit working")
+
+async onSubmit(form: NgForm) {
+  let emailBody = form.value.body;
+  let emailSubject = form.value.subject
+  const post = {
+    "body": emailBody,
+    "subject": emailSubject
+  }
+  console.log(post)
+  const settings = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(post)
+  }
+  const data = await fetch(`${baseURL}/messages`, settings)
+  const refresh = await fetch(`${baseURL}/messages`)
+  const res = await refresh.json()
+  const messages = res._embedded.messages
+  this.messages = messages
+  form.reset();
 }
 
 }
