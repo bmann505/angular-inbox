@@ -6,10 +6,12 @@
 [selectall]="select.bind(this)"
 [displayRead]="displayRead.bind(this)"
 [displayUnread]="displayUnread.bind(this)"
-[deleteMessage]="deleteMessage.bind(this)">
+[deleteMessage]="deleteMessage.bind(this)"
+[displayForm]="displayForm.bind(this)">
 </app-toolbar>
 <app-compose
-[onSubmit]="onSubmit.bind(this)">
+[onSubmit]="onSubmit.bind(this)"
+[displayForm]="displayForm.bind(this)">
 </app-compose>
 <app-messages
 [messages]="messages"

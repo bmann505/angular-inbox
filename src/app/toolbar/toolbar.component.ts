@@ -16,6 +16,7 @@ export class ToolbarComponent implements OnInit {
   @Input() toggleSelectButton: () => void;
   @Input() unReadCounter: () => void;
   @Input() toggleForm: () => void;
+  @Input() displayForm: () => void;
   constructor() { }
 
   ngOnInit() {

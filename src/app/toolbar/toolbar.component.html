@@ -4,7 +4,7 @@
       <span class="badge badge">{{ unReadCounter() }}</span>
       unread messages
     </p>
-    <a class="btn btn-danger">
+    <a (click)="displayForm()" class="btn btn-danger">
       <i class="fa fa-plus"></i>
     </a>
     <button (click)="selectall()" class="btn btn-default">

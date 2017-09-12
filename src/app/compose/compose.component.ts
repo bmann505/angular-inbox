@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ComposeComponent implements OnInit {
 
   @Input() onSubmit: () => void;
-
+  @Input() displayForm: () => void;
   constructor() { }
 
   ngOnInit() {

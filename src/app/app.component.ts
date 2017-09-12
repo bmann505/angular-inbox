@@ -2,8 +2,8 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import data from './app.data'
 import { NgForm } from '@angular/forms'
 
-const baseURL = 'http://localhost:8082/api'
-// const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
+// const baseURL = 'http://localhost:8082/api'
+const baseURL = 'https://shrouded-journey-20674.herokuapp.com/api'
 
 @Component({
   selector: 'app-root',
@@ -233,6 +233,10 @@ unReadCounter() {
   }
 }
 
+displayForm() {
+  return false;
+}
+
 
 async onSubmit(form: NgForm) {
   let emailBody = form.value.body;
@@ -241,7 +245,6 @@ async onSubmit(form: NgForm) {
     "body": emailBody,
     "subject": emailSubject
   }
-  console.log(post)
   const settings = {
     method: "POST",
     headers: {

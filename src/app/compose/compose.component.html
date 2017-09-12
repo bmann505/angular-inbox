@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form form-horizontal well" >
+<form [ngClass]="{hidden: displayForm()}" id="newEmail" (ngSubmit)="onSubmit(f)" #f="ngForm" class="form form-horizontal well" >
   <div class="form-group">
     <div class="col-sm-8 col-sm-offset-2">
       <h4>Compose Message</h4>
